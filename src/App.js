@@ -1,12 +1,11 @@
 import React from 'react';
-import logo from './assets/images/logo.svg';
 import styles from './App.module.scss'
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
-import { initializeApp } from './redux/appReducer';
-import { initializeAppSelector } from './redux/appSelectors';
+import { initializeApp } from './redux/reducers/appReducer';
+import { initializeAppSelector } from './redux/reducers/appSelectors';
 import Preloader from './components/common/Preloader/Preloader';
 
 /* React Lazy example
@@ -21,8 +20,7 @@ class App extends React.Component {
       return <Preloader />
     }
     return (
-      <div className={styles.App}>
-        <img alt="App-logo" className={styles.AppLogo} src={logo} />
+      <div className={styles.container}>
         <Switch>
           <Route path="*" render={() => <div>404 NOT FOUND</div>} />
           {/* <Route path="/profile/:userId?" render={withSuspense(ProfileContainer)} /> - React Suspense example*/}

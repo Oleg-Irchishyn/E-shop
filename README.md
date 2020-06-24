@@ -1,1 +1,1 @@
-Skeleton build for react apps
+E-commerce online shop on react
