@@ -1,4 +1,4 @@
 
 export const getBooks = (state) => {
-  return state.books.books;
+  return state.books.items;
 }

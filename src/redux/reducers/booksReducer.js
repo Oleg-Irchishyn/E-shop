@@ -1,11 +1,11 @@
-const ADD_BOOKS = 'e-shop/app/ADD_BOOK';
+import { booksAPI } from "../../api/api";
+
+const SET_IS_READY = 'e-shop/app/SET_IS_READY';
 const SET_BOOKS = 'e-shop/app/SET_BOOKS';
 
 let initialState = {
-  books: [{
-    id: 0,
-    title: 'Simple Book'
-  }]
+  isReady: false,
+  items: null
 }
 
 const booksReducer = (state = initialState, action) => {
@@ -13,28 +13,35 @@ const booksReducer = (state = initialState, action) => {
     case SET_BOOKS:
       return {
         ...state,
-        books: action.payload
+        items: action.payload,
+        isReady: true
       }
-    case ADD_BOOKS:
+    case SET_IS_READY:
       return {
         ...state,
-        books: [
-          ...state.books,
-          action.payload
-        ]
+        isReady: action.payload
+
       }
     default:
       return state;
   }
 }
 
-export const addBook = () => ({
-  type: ADD_BOOKS
+export const setIsReady = (data) => ({
+  type: SET_IS_READY,
+  payload: data
 })
 
 export const setBooks = (books) => ({
   type: SET_BOOKS,
   payload: books
 })
+
+export const setBooksSuccess = (data) => {
+  return async (dispatch) => {
+    let data = await booksAPI.setBooks();
+    dispatch(setBooks(data));
+  }
+}
 
 export default booksReducer;
