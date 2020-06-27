@@ -17,6 +17,7 @@ const DialogsContainer = React.lazy(() => import('./components/Dialogs/ProfileCo
 
 class App extends React.Component {
   componentDidMount() {
+    const { setBooksSuccess } = this.props
     setBooksSuccess();
   }
   render() {
@@ -27,7 +28,7 @@ class App extends React.Component {
     return (
       <div className={styles.container}>
         <ul>
-          {books.map(book => (
+          {books && books.map(book => (
             <li><b>{book.title}</b> - {book.author}</li>
           ))}
         </ul>
@@ -51,8 +52,8 @@ const mapDispatchToProps = (dispatch) => {
     setBooks: (books) => {
       dispatch(setBooks(books))
     },
-    setBooksSuccess: (data) => {
-      dispatch(setBooksSuccess(data))
+    setBooksSuccess: () => {
+      dispatch(setBooksSuccess())
     }
   }
 }

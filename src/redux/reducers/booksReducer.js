@@ -37,9 +37,9 @@ export const setBooks = (books) => ({
   payload: books
 })
 
-export const setBooksSuccess = (data) => {
+export const setBooksSuccess = () => {
   return async (dispatch) => {
-    let data = await booksAPI.setBooks();
+    let data = await booksAPI.getBooks();
     dispatch(setBooks(data));
   }
 }
