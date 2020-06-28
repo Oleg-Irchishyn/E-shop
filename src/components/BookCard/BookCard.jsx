@@ -2,6 +2,7 @@
 import React from 'react';
 import { Card, Icon, Image } from 'semantic-ui-react';
 import ImagePlaceholder from "../../assets/images/book_cover_placholder.png"
+import Proptypes from 'prop-types';
 
 export const BookCard = ({ title, author, price, image }) => {
   return (

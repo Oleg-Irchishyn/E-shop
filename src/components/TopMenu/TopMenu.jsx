@@ -1,7 +1,8 @@
 import React from 'react';
 import { Menu } from 'semantic-ui-react';
+import Proptypes from 'prop-types';
 
-export default class HeaderMenu extends React.Component {
+export default class TopMenu extends React.Component {
   state = {}
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
@@ -16,7 +17,7 @@ export default class HeaderMenu extends React.Component {
           active={activeItem === 'browse'}
           onClick={this.handleItemClick}
         >
-          Магазин книг
+          Books Shop
         </Menu.Item>
 
         <Menu.Menu position='right'>
@@ -25,7 +26,7 @@ export default class HeaderMenu extends React.Component {
             active={activeItem === 'signup'}
             onClick={this.handleItemClick}
           >
-            Итого: &nbsp; <b>0</b> руб.
+            Total: &nbsp; <b>0</b> &nbsp; rub.
           </Menu.Item>
 
           <Menu.Item
@@ -33,7 +34,7 @@ export default class HeaderMenu extends React.Component {
             active={activeItem === 'help'}
             onClick={this.handleItemClick}
           >
-            Корзина
+            Cart
           </Menu.Item>
         </Menu.Menu>
       </Menu>

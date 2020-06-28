@@ -2,10 +2,12 @@ import { booksAPI } from "../../api/api";
 
 const SET_IS_READY = 'e-shop/app/SET_IS_READY';
 const SET_BOOKS = 'e-shop/app/SET_BOOKS';
+const SET_FILTER = 'e-shop/app/SET_FILTER';
 
 let initialState = {
   isReady: false,
-  items: null
+  items: null,
+  filterBy: 'all'
 }
 
 const booksReducer = (state = initialState, action) => {
@@ -15,6 +17,11 @@ const booksReducer = (state = initialState, action) => {
         ...state,
         items: action.payload,
         isReady: true
+      }
+    case SET_FILTER:
+      return {
+        ...state,
+        filterBy: action.payload
       }
     case SET_IS_READY:
       return {
@@ -35,6 +42,11 @@ export const setIsReady = (data) => ({
 export const setBooks = (books) => ({
   type: SET_BOOKS,
   payload: books
+})
+
+export const setFilter = (filter) => ({
+  type: SET_BOOKS,
+  payload: filter
 })
 
 export const setBooksSuccess = () => {
