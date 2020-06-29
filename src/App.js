@@ -13,8 +13,8 @@ import Preloader from './components/common/Preloader/Preloader';
 import TopMenu from "./components/TopMenu/TopMenu";
 import BookCard from "./components/BookCard/BookCard";
 import Filter from "./components/Filter/Filter";
-import orderBy from "lodash/orderBy";
 import Proptypes from 'prop-types';
+
 
 /* React Lazy example
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/ProfileContainer'));
@@ -25,6 +25,7 @@ class App extends React.Component {
     const { setBooksSuccess } = this.props
     setBooksSuccess();
   }
+
   render() {
     const { books, isReady, setFilter, filterBy } = this.props;
     if (!this.props.initialized) {
@@ -56,8 +57,6 @@ const mapDispatchToProps = (dispatch) => ({
   ...bindActionCreators(appActions, dispatch),
   ...bindActionCreators(booksActions, dispatch)
 })
-
-
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),

@@ -8,7 +8,6 @@ const Filter = ({ setFilter, filterBy }) => {
   return (
     <Menu secondary>
       {createMenuItem('All', filterBy === 'All', setFilter.bind(this, 'All'))}
-      {createMenuItem('Popular', filterBy === 'Popular', setFilter.bind(this, 'Popular'))}
       {createMenuItem('Price(high)', filterBy === 'Price(high)', setFilter.bind(this, 'Price(high)'))}
       {createMenuItem('Price(low)', filterBy === 'Price(low)', setFilter.bind(this, 'Price(low)'))}
       {createMenuItem('Author', filterBy === 'Author', setFilter.bind(this, 'Author'))}
