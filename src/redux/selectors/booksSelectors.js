@@ -6,3 +6,7 @@ export const getBooks = (state) => {
 export const checkBooksIsready = (state) => {
   return state.books.isReady;
 }
+
+export const filterBy = (state) => {
+  return state.books.filterBy;
+}

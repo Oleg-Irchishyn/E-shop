@@ -45,7 +45,7 @@ export const setBooks = (books) => ({
 })
 
 export const setFilter = (filter) => ({
-  type: SET_BOOKS,
+  type: SET_FILTER,
   payload: filter
 })
 

@@ -1,44 +1,20 @@
 import React from 'react';
-import { Menu } from 'semantic-ui-react'
+import { Menu } from 'semantic-ui-react';
 import Proptypes from 'prop-types';
+import { createMenuItem } from '../../redux/utils/oblects-helpers';
 
-export default class Filter extends React.Component {
-  state = { activeItem: 'All' }
+const Filter = ({ setFilter, filterBy }) => {
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+  return (
+    <Menu secondary>
+      {createMenuItem('All', filterBy === 'All', setFilter.bind(this, 'All'))}
+      {createMenuItem('Popular', filterBy === 'Popular', setFilter.bind(this, 'Popular'))}
+      {createMenuItem('Price(high)', filterBy === 'Price(high)', setFilter.bind(this, 'Price(high)'))}
+      {createMenuItem('Price(low)', filterBy === 'Price(low)', setFilter.bind(this, 'Price(low)'))}
+      {createMenuItem('Author', filterBy === 'Author', setFilter.bind(this, 'Author'))}
+    </Menu>
 
-  render() {
-    const { activeItem } = this.state
-
-    return (
-      <Menu secondary>
-        <Menu.Item
-          name='All'
-          active={activeItem === 'All'}
-          onClick={this.handleItemClick}
-        />
-        <Menu.Item
-          name='Popular'
-          active={activeItem === 'Popular'}
-          onClick={this.handleItemClick}
-        />
-        <Menu.Item
-          name='Price(high)'
-          active={activeItem === 'Price(high)'}
-          onClick={this.handleItemClick}
-        />
-        <Menu.Item
-          name='Price(low)'
-          active={activeItem === 'Price(low)'}
-          onClick={this.handleItemClick}
-        />
-        <Menu.Item
-          name='Author'
-          active={activeItem === 'Author'}
-          onClick={this.handleItemClick}
-        />
-      </Menu>
-
-    )
-  }
+  )
 }
+
+export default Filter;

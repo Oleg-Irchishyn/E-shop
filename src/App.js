@@ -8,11 +8,12 @@ import { compose, bindActionCreators } from 'redux';
 import *as appActions from './redux/reducers/appReducer';
 import *as booksActions from './redux/reducers/booksReducer';
 import { initializeAppSelector } from './redux/selectors/appSelectors';
-import { getBooks, checkBooksIsready } from './redux/selectors/booksSelectors';
+import { getBooks, checkBooksIsready, filterBy } from './redux/selectors/booksSelectors';
 import Preloader from './components/common/Preloader/Preloader';
 import TopMenu from "./components/TopMenu/TopMenu";
 import BookCard from "./components/BookCard/BookCard";
 import Filter from "./components/Filter/Filter";
+import orderBy from "lodash/orderBy";
 import Proptypes from 'prop-types';
 
 /* React Lazy example
@@ -25,14 +26,14 @@ class App extends React.Component {
     setBooksSuccess();
   }
   render() {
-    const { books, isReady } = this.props;
+    const { books, isReady, setFilter, filterBy } = this.props;
     if (!this.props.initialized) {
       return <Preloader />
     }
     return (
       <Container>
         <TopMenu />
-        <Filter />
+        <Filter setFilter={setFilter} filterBy={filterBy} />
         <Card.Group className="ui four doubling cards">
           {!isReady ? <Preloader /> : books.map(book => (
             <BookCard key={book.id} {...book} />
@@ -47,7 +48,8 @@ class App extends React.Component {
 const mapStateToProps = (state) => ({
   initialized: initializeAppSelector(state),
   books: getBooks(state),
-  isReady: checkBooksIsready(state)
+  isReady: checkBooksIsready(state),
+  filterBy: filterBy(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
