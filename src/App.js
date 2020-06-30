@@ -1,14 +1,17 @@
 import React from 'react';
 import styles from './App.module.scss'
 import { Route, Switch, Redirect } from 'react-router-dom';
+import orderBy from "lodash/orderBy";
 import { connect } from 'react-redux';
 import { Container, Card } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 import { compose, bindActionCreators } from 'redux';
 import *as appActions from './redux/reducers/appReducer';
 import *as booksActions from './redux/reducers/booksReducer';
+import *as filterActions from './redux/reducers/filterReducer';
 import { initializeAppSelector } from './redux/selectors/appSelectors';
 import { getBooks, checkBooksIsready, filterBy } from './redux/selectors/booksSelectors';
+import { searchQuery } from './redux/selectors/filterSelectors';
 import Preloader from './components/common/Preloader/Preloader';
 import TopMenu from "./components/TopMenu/TopMenu";
 import BookCard from "./components/BookCard/BookCard";
@@ -27,14 +30,14 @@ class App extends React.Component {
   }
 
   render() {
-    const { books, isReady, setFilter, filterBy } = this.props;
+    const { books, isReady, setFilter, filterBy, searchQuery, setSearchQuery } = this.props;
     if (!this.props.initialized) {
       return <Preloader />
     }
     return (
       <Container>
         <TopMenu />
-        <Filter setFilter={setFilter} filterBy={filterBy} />
+        <Filter setFilter={setFilter} filterBy={filterBy} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         <Card.Group className="ui four doubling cards">
           {!isReady ? <Preloader /> : books.map(book => (
             <BookCard key={book.id} {...book} />
@@ -46,17 +49,44 @@ class App extends React.Component {
   }
 }
 
+const sortBy = (books, filterBy) => {
+  switch (filterBy) {
+    case 'Price(high)':
+      return orderBy(books, 'price', 'desc')
+    case 'Price(low)':
+      return orderBy(books, 'price', 'asc')
+    case 'Author':
+      return orderBy(books, 'Author', 'asc')
+    default:
+      return books;
+  }
+}
+
+const filterBooks = (books, searchQuery) =>
+  books.filter(
+    obj =>
+      obj.title.toLowerCase().indexOf(searchQuery.toLowerCase()) >= 0 ||
+      obj.author.toLowerCase().indexOf(searchQuery.toLowerCase()) >= 0
+  );
+
+export const searchBooks = (books, filterBy, searchQuery) => {
+  return sortBy(filterBooks(books, searchQuery), filterBy)
+};
+
 const mapStateToProps = (state) => ({
   initialized: initializeAppSelector(state),
   books: getBooks(state),
   isReady: checkBooksIsready(state),
-  filterBy: filterBy(state)
+  filterBy: filterBy(state),
+  searchQuery: searchQuery(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
   ...bindActionCreators(appActions, dispatch),
-  ...bindActionCreators(booksActions, dispatch)
+  ...bindActionCreators(booksActions, dispatch),
+  ...bindActionCreators(filterActions, dispatch)
 })
+
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),

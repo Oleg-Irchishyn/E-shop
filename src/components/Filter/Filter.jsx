@@ -1,16 +1,26 @@
 import React from 'react';
-import { Menu } from 'semantic-ui-react';
+import { Menu, Input } from 'semantic-ui-react';
 import Proptypes from 'prop-types';
-import { createMenuItem } from '../../redux/utils/oblects-helpers';
+import { createSecondaryMenuItem } from '../../redux/utils/oblects-helpers';
 
-const Filter = ({ setFilter, filterBy }) => {
 
+
+const Filter = ({ setFilter, filterBy, searchQuery, setSearchQuery }) => {
+  const setQuerySuccess = (e) => {
+    setSearchQuery(e.target.value);
+  }
   return (
     <Menu secondary>
-      {createMenuItem('All', filterBy === 'All', setFilter.bind(this, 'All'))}
-      {createMenuItem('Price(high)', filterBy === 'Price(high)', setFilter.bind(this, 'Price(high)'))}
-      {createMenuItem('Price(low)', filterBy === 'Price(low)', setFilter.bind(this, 'Price(low)'))}
-      {createMenuItem('Author', filterBy === 'Author', setFilter.bind(this, 'Author'))}
+      {createSecondaryMenuItem('All', filterBy === 'All', setFilter.bind(this, 'All'))}
+      {createSecondaryMenuItem('Price(high)', filterBy === 'Price(high)', setFilter.bind(this, 'Price(high)'))}
+      {createSecondaryMenuItem('Price(low)', filterBy === 'Price(low)', setFilter.bind(this, 'Price(low)'))}
+      {createSecondaryMenuItem('Author', filterBy === 'Author', setFilter.bind(this, 'Author'))}
+      <Menu.Item>
+        <Input icon='search'
+          onChange={setQuerySuccess}
+          placeholder='Search books...'
+          value={searchQuery} />
+      </Menu.Item>
     </Menu>
 
   )

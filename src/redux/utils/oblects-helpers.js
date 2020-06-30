@@ -1,8 +1,16 @@
 import { Menu } from 'semantic-ui-react';
 import React from 'react';
 
-export const createMenuItem = (name, active, method) => (
+export const createSecondaryMenuItem = (name, active, method) => (
   <Menu.Item name={name} active={active} onClick={method} />
+)
+
+export const createTopMenuItem = (name, active, method, text) => (
+  <Menu.Item name={name} active={active} onClick={method}>{text}</Menu.Item>
+)
+
+export const createTopMenuItemWithCalculations = (name, active, method, text, currency) => (
+  <Menu.Item name={name} active={active} onClick={method}>{text}&nbsp; <b>0</b> &nbsp;{currency}</Menu.Item>
 )
 
 setTimeout(function () {

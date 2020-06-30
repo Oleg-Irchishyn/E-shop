@@ -5,12 +5,14 @@ import thunkMiddleware from "redux-thunk";
 import logger from "redux-logger"
 import { reducer as formReducer } from "redux-form";
 import cartReducer from "./reducers/cartReducer";
+import filterReducer from "./reducers/filterReducer";
 
 
 let reducers = combineReducers({
   app: appReducer,
   books: booksReducer,
   cart: cartReducer,
+  filter: filterReducer,
   form: formReducer
 });
 

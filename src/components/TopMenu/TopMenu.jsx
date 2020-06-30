@@ -1,6 +1,7 @@
 import React from 'react';
 import { Menu } from 'semantic-ui-react';
 import Proptypes from 'prop-types';
+import { createTopMenuItem, createTopMenuItemWithCalculations } from '../../redux/utils/oblects-helpers';
 
 export default class TopMenu extends React.Component {
   state = {}
@@ -12,30 +13,10 @@ export default class TopMenu extends React.Component {
 
     return (
       <Menu>
-        <Menu.Item
-          name='browse'
-          active={activeItem === 'browse'}
-          onClick={this.handleItemClick}
-        >
-          Books Shop
-        </Menu.Item>
-
+        {createTopMenuItem('browse', activeItem === 'browse', this.handleItemClick, "Books Shop")}
         <Menu.Menu position='right'>
-          <Menu.Item
-            name='signup'
-            active={activeItem === 'signup'}
-            onClick={this.handleItemClick}
-          >
-            Total: &nbsp; <b>0</b> &nbsp; rub.
-          </Menu.Item>
-
-          <Menu.Item
-            name='help'
-            active={activeItem === 'help'}
-            onClick={this.handleItemClick}
-          >
-            Cart
-          </Menu.Item>
+          {createTopMenuItemWithCalculations('signup', activeItem === 'signup', this.handleItemClick, "Total:", "rub.")}
+          {createTopMenuItemWithCalculations('help', activeItem === 'help', this.handleItemClick, " Cart:")}
         </Menu.Menu>
       </Menu>
     )
