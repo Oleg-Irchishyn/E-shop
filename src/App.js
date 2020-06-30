@@ -8,10 +8,12 @@ import { withRouter } from 'react-router-dom';
 import { compose, bindActionCreators } from 'redux';
 import *as appActions from './redux/reducers/appReducer';
 import *as booksActions from './redux/reducers/booksReducer';
+import *as cartActions from './redux/reducers/cartReducer';
 import *as filterActions from './redux/reducers/filterReducer';
 import { initializeAppSelector } from './redux/selectors/appSelectors';
-import { getBooks, checkBooksIsready, filterBy } from './redux/selectors/booksSelectors';
+import { getAllBooks, checkBooksIsready, filterBy } from './redux/selectors/booksSelectors';
 import { searchQuery } from './redux/selectors/filterSelectors';
+import { totalItemsPrice } from './redux/selectors/cartSelectors';
 import Preloader from './components/common/Preloader/Preloader';
 import TopMenu from "./components/TopMenu/TopMenu";
 import BookCard from "./components/BookCard/BookCard";
@@ -30,13 +32,15 @@ class App extends React.Component {
   }
 
   render() {
-    const { books, isReady, setFilter, filterBy, searchQuery, setSearchQuery } = this.props;
+    const { books, isReady, setFilter,
+      filterBy, searchQuery, setSearchQuery,
+      totalPrice } = this.props;
     if (!this.props.initialized) {
       return <Preloader />
     }
     return (
       <Container>
-        <TopMenu />
+        <TopMenu totalPrice={totalPrice} />
         <Filter setFilter={setFilter} filterBy={filterBy} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         <Card.Group className="ui four doubling cards">
           {!isReady ? <Preloader /> : books.map(book => (
@@ -75,16 +79,18 @@ export const searchBooks = (books, filterBy, searchQuery) => {
 
 const mapStateToProps = (state) => ({
   initialized: initializeAppSelector(state),
-  books: getBooks(state),
+  books: getAllBooks(state),
   isReady: checkBooksIsready(state),
   filterBy: filterBy(state),
-  searchQuery: searchQuery(state)
+  searchQuery: searchQuery(state),
+  totalPrice: totalItemsPrice(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
   ...bindActionCreators(appActions, dispatch),
   ...bindActionCreators(booksActions, dispatch),
-  ...bindActionCreators(filterActions, dispatch)
+  ...bindActionCreators(filterActions, dispatch),
+  ...bindActionCreators(cartActions, dispatch)
 })
 
 

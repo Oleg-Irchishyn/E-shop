@@ -1,9 +1,7 @@
 import React from 'react';
 import { Menu, Input } from 'semantic-ui-react';
 import Proptypes from 'prop-types';
-import { createSecondaryMenuItem } from '../../redux/utils/oblects-helpers';
-
-
+import { createSecondaryMenuItem, createSecondaryMenuInput } from '../../redux/utils/oblects-helpers';
 
 const Filter = ({ setFilter, filterBy, searchQuery, setSearchQuery }) => {
   const setQuerySuccess = (e) => {
@@ -15,14 +13,8 @@ const Filter = ({ setFilter, filterBy, searchQuery, setSearchQuery }) => {
       {createSecondaryMenuItem('Price(high)', filterBy === 'Price(high)', setFilter.bind(this, 'Price(high)'))}
       {createSecondaryMenuItem('Price(low)', filterBy === 'Price(low)', setFilter.bind(this, 'Price(low)'))}
       {createSecondaryMenuItem('Author', filterBy === 'Author', setFilter.bind(this, 'Author'))}
-      <Menu.Item>
-        <Input icon='search'
-          onChange={setQuerySuccess}
-          placeholder='Search books...'
-          value={searchQuery} />
-      </Menu.Item>
+      {createSecondaryMenuInput('search', setQuerySuccess, 'Search books...', searchQuery)}
     </Menu>
-
   )
 }
 

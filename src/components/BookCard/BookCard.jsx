@@ -1,10 +1,10 @@
 
 import React from 'react';
-import { Card, Icon, Image } from 'semantic-ui-react';
+import { Card, Icon, Image, Button } from 'semantic-ui-react';
 import ImagePlaceholder from "../../assets/images/book_cover_placholder.png"
 import Proptypes from 'prop-types';
 
-export const BookCard = ({ title, author, price, image }) => {
+export const BookCard = ({ title, author, price, image, addBook }) => {
   return (
     <Card>
       <Image src={image = ImagePlaceholder} wrapped ui={false} />
@@ -20,6 +20,7 @@ export const BookCard = ({ title, author, price, image }) => {
           {price}
         </a>
       </Card.Content>
+      <Button onClick={addBook}>Add to Cart</Button>
     </Card>
   )
 }
