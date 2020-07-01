@@ -9,7 +9,7 @@ export const filterBy = (state) => {
   return state.filter.filterBy;
 }
 
-const getBooks = (state) => {
+export const getBooks = (state) => {
   return state.books.items;
 }
 

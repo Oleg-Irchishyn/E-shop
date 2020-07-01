@@ -3,30 +3,8 @@ const REMOVE_BOOK_FROM_CART = 'e-shop/app/REMOVE_BOOK_FROM_CART';
 const ADD_BOOK_TO_CART = 'e-shop/app/ADD_BOOK_TO_CART';
 
 let initialState = {
-  items: [{
-    "id": 0,
-    "title": "Происхождение",
-    "author": "Дэн Браун",
-    "image": "https://cv9.litres.ru/pub/c/elektronnaya-kniga/cover_415/27624091-den-braun-proishozhdenie-27624091.jpg",
-    "price": 710,
-    "rating": 3
-  },
-  {
-    "id": 1,
-    "title": "1984",
-    "author": "Джордж Оруэлл",
-    "image": "https://cv0.litres.ru/sbc/09233908_cover_185-elektronnaya-kniga--.jpg",
-    "price": 415,
-    "rating": 5
-  },
-  {
-    "id": 2,
-    "title": "Девушка в тумане",
-    "author": "Донато Карризи",
-    "image": "https://cv2.litres.ru/sbc/31635724_cover_185-elektronnaya-kniga-donato-karrizi-devushka-v-tumane.jpg",
-    "price": 464,
-    "rating": 4
-  }]
+  items: [],
+  addedCount: 0
 }
 
 const cartReducer = (state = initialState, action) => {
@@ -50,14 +28,15 @@ const cartReducer = (state = initialState, action) => {
   }
 }
 
-export const setIsReady = (data) => ({
-  type: REMOVE_BOOK_FROM_CART,
-  payload: data
+export const addBookToCart = (obj) => ({
+  type: ADD_BOOK_TO_CART,
+  payload: obj
 })
 
-export const addBooksToCart = (books) => ({
-  type: ADD_BOOK_TO_CART,
-  payload: books
+export const removeBookFromCart = (id) => ({
+  type: REMOVE_BOOK_FROM_CART,
+  payload: id
 })
+
 
 export default cartReducer;

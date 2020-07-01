@@ -13,7 +13,7 @@ import *as filterActions from './redux/reducers/filterReducer';
 import { initializeAppSelector } from './redux/selectors/appSelectors';
 import { getAllBooks, checkBooksIsready, filterBy } from './redux/selectors/booksSelectors';
 import { searchQuery } from './redux/selectors/filterSelectors';
-import { totalItemsPrice } from './redux/selectors/cartSelectors';
+import { totalItemsPrice, cartItemsLength, addedCount, cartItems } from './redux/selectors/cartSelectors';
 import Preloader from './components/common/Preloader/Preloader';
 import TopMenu from "./components/TopMenu/TopMenu";
 import BookCard from "./components/BookCard/BookCard";
@@ -34,17 +34,18 @@ class App extends React.Component {
   render() {
     const { books, isReady, setFilter,
       filterBy, searchQuery, setSearchQuery,
-      totalPrice } = this.props;
+      totalPrice, count, addBookToCart, removeBookFromCart,
+      cartItems } = this.props;
     if (!this.props.initialized) {
       return <Preloader />
     }
     return (
       <Container>
-        <TopMenu totalPrice={totalPrice} />
+        <TopMenu totalPrice={totalPrice} count={count} removeBookFromCart={removeBookFromCart} cartItems={cartItems} />
         <Filter setFilter={setFilter} filterBy={filterBy} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         <Card.Group className="ui four doubling cards">
           {!isReady ? <Preloader /> : books.map(book => (
-            <BookCard key={book.id} {...book} />
+            <BookCard key={book.id} {...book} addBookToCart={addBookToCart} />
           ))}
         </Card.Group>
         {/* <Route path="/profile/:userId?" render={withSuspense(ProfileContainer)} /> - React Suspense example*/}
@@ -83,7 +84,9 @@ const mapStateToProps = (state) => ({
   isReady: checkBooksIsready(state),
   filterBy: filterBy(state),
   searchQuery: searchQuery(state),
-  totalPrice: totalItemsPrice(state)
+  totalPrice: totalItemsPrice(state),
+  count: cartItemsLength(state),
+  cartItems: cartItems(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -1,7 +1,12 @@
 import { createSelector } from "reselect";
+import uniqBy from 'lodash/uniqBy';
 
-const cartItems = (state) => {
-  return state.cart.items
+export const cartItems = (state) => {
+  return uniqBy(state.cart.items, o => o.id)
+}
+
+export const cartItemsLength = (state) => {
+  return parseInt(cartItems(state).length);
 }
 
 export const totalItemsPrice = createSelector(
@@ -9,3 +14,4 @@ export const totalItemsPrice = createSelector(
     return items.reduce((total, book) => total + book.price, 0);
   }
 )
+
