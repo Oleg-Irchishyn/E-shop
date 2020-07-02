@@ -1,17 +1,16 @@
 
 import React from 'react';
 import { Card, Icon, Image, Button } from 'semantic-ui-react';
-import ImagePlaceholder from "../../assets/images/book_cover_placholder.png"
 import *as cartActions from './../../redux/reducers/cartReducer';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 const BookCard = (book) => {
   const { title, author, price, image, addBookToCart, addedCount } = book
   return (
     <Card>
-      <Image src={image ? ImagePlaceholder : null} wrapped ui={false} />
+      <Image src={image} wrapped ui={false} />
       <Card.Content>
         <Card.Header>{title}</Card.Header>
         <Card.Meta>
@@ -29,6 +28,16 @@ const BookCard = (book) => {
       </Button>
     </Card>
   )
+}
+
+BookCard.propTypes = {
+  book: PropTypes.object,
+  addedCount: PropTypes.number.isRequired,
+  addBookToCart: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  image: PropTypes.string.isRequired
 }
 
 const mapStateToProps = ({ cart }, { id }) => ({

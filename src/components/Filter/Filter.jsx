@@ -1,7 +1,7 @@
 import React from 'react';
-import { Menu, Input } from 'semantic-ui-react';
-import Proptypes from 'prop-types';
-import { createSecondaryMenuItem, createSecondaryMenuInput } from '../../redux/utils/oblects-helpers';
+import { Menu } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
+import { createSecondaryMenuItem, createSecondaryMenuInput } from '../../redux/utils/oblectsHelpers';
 
 const Filter = ({ setFilter, filterBy, searchQuery, setSearchQuery }) => {
   const setQuerySuccess = (e) => {
@@ -16,6 +16,13 @@ const Filter = ({ setFilter, filterBy, searchQuery, setSearchQuery }) => {
       {createSecondaryMenuInput('search', setQuerySuccess, 'Search books...', searchQuery)}
     </Menu>
   )
+}
+
+Filter.propTypes = {
+  setFilter: PropTypes.func.isRequired,
+  filterBy: PropTypes.string.isRequired,
+  searchQuery: PropTypes.string.isRequired,
+  setSearchQuery: PropTypes.func.isRequired
 }
 
 export default Filter;

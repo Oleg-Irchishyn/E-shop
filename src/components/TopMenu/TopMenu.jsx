@@ -1,7 +1,6 @@
 import React from 'react';
 import { Menu, Popup, List, Button, Image } from 'semantic-ui-react';
-import Proptypes from 'prop-types';
-import { createTopMenuItem } from '../../redux/utils/oblects-helpers';
+import PropTypes from 'prop-types';
 
 const Cart = ({ title, id, image, removeBookFromCart }) => {
   return (
@@ -17,37 +16,33 @@ const Cart = ({ title, id, image, removeBookFromCart }) => {
   )
 }
 
-export default class TopMenu extends React.Component {
-  state = {}
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
-  render() {
-    const { activeItem } = this.state
-    const { totalPrice, count, cartItems } = this.props
-    return (
-      <Menu>
-        {createTopMenuItem('browse', activeItem === 'browse', this.handleItemClick, "Books Shop")}
-        <Menu.Menu position='right'>
-          <Menu.Item name='signup'
-            active={activeItem === 'signup'}
-            onClick={this.handleItemClick}>
-            Total:&nbsp; <b>{totalPrice}</b> &nbsp;rub.
-         </Menu.Item>
-
-          <Popup
-            trigger={
-              <Menu.Item name='help'
-                active={activeItem === 'help'}
-                onClick={this.handleItemClick}>
-                Cart:&nbsp;(<b>{count}</b>)
-         </Menu.Item>
-            }
-            content={cartItems.map(book => <Cart {...book} />)}
-            on="click"
-            hideOnScroll
-          />
-
-        </Menu.Menu>
-      </Menu>
-    )
-  }
+const TopMenu = ({ totalPrice, count, cartItems }) => {
+  return (
+    <Menu>
+      <Menu.Item name='title'>Books Shop</Menu.Item>
+      <Menu.Menu position='right'>
+        <Menu.Item name='total'> Total:&nbsp; <b>{totalPrice}</b> &nbsp;rub.</Menu.Item>
+        <Popup
+          trigger={<Menu.Item name='cart'>Cart:&nbsp;(<b>{count}</b>)</Menu.Item>}
+          content={cartItems.map(book => <Cart {...book} key={book.id} />)} on="click" hideOnScroll
+        />
+      </Menu.Menu>
+    </Menu>
+  )
 }
+
+Cart.propTypes = {
+  title: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+  image: PropTypes.string.isRequired,
+  removeBookFromCart: PropTypes.func.isRequired
+}
+
+TopMenu.propTypes = {
+  totalPrice: PropTypes.number.isRequired,
+  count: PropTypes.number.isRequired,
+  cartItems: PropTypes.array.isRequired
+}
+
+
+export default TopMenu;

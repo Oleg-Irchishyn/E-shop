@@ -1,3 +1,5 @@
+import { setBooksSuccess } from "./booksReducer";
+
 const INITIALIZED_SUCCESS = 'e-shop/app/INITIALIZED_SUCCESS';
 
 let initialState = {
@@ -21,7 +23,11 @@ export const initializedSuccess = () => ({
 })
 
 export const initializeApp = () => (dispatch) => {
-  dispatch(initializedSuccess());
+  let promise = dispatch(setBooksSuccess());
+  Promise.all([promise])
+    .then(() => {
+      dispatch(initializedSuccess());
+    })
 }
 
 export default appReducer;

@@ -1,6 +1,4 @@
 import React from 'react';
-import styles from './App.module.scss'
-import { Route, Switch, Redirect } from 'react-router-dom';
 import orderBy from "lodash/orderBy";
 import { connect } from 'react-redux';
 import { Container, Card } from 'semantic-ui-react';
@@ -10,33 +8,30 @@ import *as appActions from './redux/reducers/appReducer';
 import *as booksActions from './redux/reducers/booksReducer';
 import *as cartActions from './redux/reducers/cartReducer';
 import *as filterActions from './redux/reducers/filterReducer';
-import { initializeAppSelector } from './redux/selectors/appSelectors';
+import { initializeAppSucess } from './redux/selectors/appSelectors';
 import { getAllBooks, checkBooksIsready, filterBy } from './redux/selectors/booksSelectors';
 import { searchQuery } from './redux/selectors/filterSelectors';
-import { totalItemsPrice, cartItemsLength, addedCount, cartItems } from './redux/selectors/cartSelectors';
+import { totalItemsPrice, cartItemsLength, cartItems } from './redux/selectors/cartSelectors';
 import Preloader from './components/common/Preloader/Preloader';
 import TopMenu from "./components/TopMenu/TopMenu";
 import BookCard from "./components/BookCard/BookCard";
 import Filter from "./components/Filter/Filter";
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 
-
-/* React Lazy example
-const DialogsContainer = React.lazy(() => import('./components/Dialogs/ProfileContainer'));
-*/
 
 class App extends React.Component {
   componentDidMount() {
-    const { setBooksSuccess } = this.props
+    const { setBooksSuccess, initializeApp } = this.props
     setBooksSuccess();
+    initializeApp();
   }
 
   render() {
     const { books, isReady, setFilter,
       filterBy, searchQuery, setSearchQuery,
       totalPrice, count, addBookToCart, removeBookFromCart,
-      cartItems } = this.props;
-    if (!this.props.initialized) {
+      cartItems, initialized } = this.props;
+    if (!initialized) {
       return <Preloader />
     }
     return (
@@ -48,7 +43,6 @@ class App extends React.Component {
             <BookCard key={book.id} {...book} addBookToCart={addBookToCart} />
           ))}
         </Card.Group>
-        {/* <Route path="/profile/:userId?" render={withSuspense(ProfileContainer)} /> - React Suspense example*/}
       </Container>
     )
   }
@@ -78,8 +72,14 @@ export const searchBooks = (books, filterBy, searchQuery) => {
   return sortBy(filterBooks(books, searchQuery), filterBy)
 };
 
+App.propTypes = {
+  initialized: PropTypes.bool.isRequired,
+  setBooksSuccess: PropTypes.func.isRequired,
+  initializeApp: PropTypes.func.isRequired
+}
+
 const mapStateToProps = (state) => ({
-  initialized: initializeAppSelector(state),
+  initialized: initializeAppSucess(state),
   books: getAllBooks(state),
   isReady: checkBooksIsready(state),
   filterBy: filterBy(state),

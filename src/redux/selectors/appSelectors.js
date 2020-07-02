@@ -4,9 +4,7 @@ const initializeApp = (state) => {
   return state.app.initialized;
 }
 
-/*Selectors, created by reselect library*/
-
-export const initializeAppSelector = createSelector(
+export const initializeAppSucess = createSelector(
   initializeApp, (initializations) => {
     return initializations = true;
   }
