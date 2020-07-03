@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "336c1c467b47e900e611a607e7b47e05",
+    "revision": "e643f1842781362f47a1b1fb4f2cf0ff",
     "url": "/E-shop/index.html"
   },
   {
-    "revision": "89e75cfee0690d35756e",
-    "url": "/E-shop/static/css/2.ba8ded83.chunk.css"
+    "revision": "dc64279280f2d2704001",
+    "url": "/E-shop/static/css/2.28c7e211.chunk.css"
   },
   {
-    "revision": "f5d9b498ee3beb1b9545",
-    "url": "/E-shop/static/css/main.3519e0df.chunk.css"
+    "revision": "f9a27be74435183e4b58",
+    "url": "/E-shop/static/css/main.f27aa48f.chunk.css"
   },
   {
-    "revision": "89e75cfee0690d35756e",
-    "url": "/E-shop/static/js/2.be0683b8.chunk.js"
+    "revision": "dc64279280f2d2704001",
+    "url": "/E-shop/static/js/2.6d37e6b2.chunk.js"
   },
   {
     "revision": "6666ddee8b1492bf6df3cb50cff80d19",
-    "url": "/E-shop/static/js/2.be0683b8.chunk.js.LICENSE.txt"
+    "url": "/E-shop/static/js/2.6d37e6b2.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "f5d9b498ee3beb1b9545",
-    "url": "/E-shop/static/js/main.d29c9814.chunk.js"
+    "revision": "f9a27be74435183e4b58",
+    "url": "/E-shop/static/js/main.6d7ed515.chunk.js"
   },
   {
     "revision": "6158be008d9a9b3ee819",
@@ -50,6 +50,26 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "9c74e172f87984c48ddf5c8108cabe67",
     "url": "/E-shop/static/media/flags.9c74e172.png"
+  },
+  {
+    "revision": "674f50d287a8c48dc19ba404d20fe713",
+    "url": "/E-shop/static/media/fontawesome-webfont.674f50d2.eot"
+  },
+  {
+    "revision": "912ec66d7572ff821749319396470bde",
+    "url": "/E-shop/static/media/fontawesome-webfont.912ec66d.svg"
+  },
+  {
+    "revision": "af7ae505a9eed503f8b8e6982036873e",
+    "url": "/E-shop/static/media/fontawesome-webfont.af7ae505.woff2"
+  },
+  {
+    "revision": "b06871f281fee6b241d60582ae9369b9",
+    "url": "/E-shop/static/media/fontawesome-webfont.b06871f2.ttf"
+  },
+  {
+    "revision": "fee66e712a8a08eef5805a46892932ad",
+    "url": "/E-shop/static/media/fontawesome-webfont.fee66e71.woff"
   },
   {
     "revision": "0ab54153eeeca0ce03978cc463b257f7",
