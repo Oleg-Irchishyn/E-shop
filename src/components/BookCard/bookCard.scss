@@ -1,0 +1,47 @@
+.book-card {
+  font-family: "Source Sans Pro", sans-serif;
+  &__rating-stars {
+    span {
+      font-size: 20px;
+      cursor: not-allowed;
+    }
+    span.checked {
+      color: orange;
+    }
+  }
+  &__button.ui.button {
+    font-family: inherit;
+    font-size: 16px;
+    &:hover,
+    &:active {
+      background-color: lightseagreen;
+      color: #fff;
+      box-shadow: 0 0 0 1px transparent inset, none;
+    }
+  }
+
+  &__extra-content.extra.content {
+    font-family: inherit;
+    a {
+      font-size: 16px;
+      &:hover,
+      &:active {
+        color: rgba(0, 0, 0, 0.4) !important;
+      }
+    }
+  }
+  &__header.header {
+    font-family: inherit !important;
+  }
+  &__author {
+    font-size: 16px;
+  }
+}
+
+.ui.active.button:active,
+.ui.button:active {
+  background-color: lightseagreen;
+  background-image: "";
+  color: rgba(0, 0, 0, 0.9);
+  box-shadow: 0 0 0 1px transparent inset, none;
+}
