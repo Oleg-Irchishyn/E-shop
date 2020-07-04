@@ -17,7 +17,7 @@ import TopMenu from "./components/TopMenu/TopMenu";
 import BookCard from "./components/BookCard/BookCard";
 import Filter from "./components/Filter/Filter";
 import PropTypes from 'prop-types';
-
+import "./app.scss";
 
 class App extends React.Component {
   componentDidMount() {
@@ -31,14 +31,17 @@ class App extends React.Component {
       filterBy, searchQuery, setSearchQuery,
       totalPrice, count, addBookToCart, removeBookFromCart,
       cartItems, initialized } = this.props;
+
     if (!initialized) {
       return <Preloader />
     }
     return (
       <Container>
-        <TopMenu totalPrice={totalPrice} count={count} removeBookFromCart={removeBookFromCart} cartItems={cartItems} />
-        <Filter setFilter={setFilter} filterBy={filterBy} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-        <Card.Group className="ui four doubling cards">
+        <div className="header" id="header">
+          <TopMenu totalPrice={totalPrice} count={count} removeBookFromCart={removeBookFromCart} cartItems={cartItems} />
+          <Filter setFilter={setFilter} filterBy={filterBy} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        </div>
+        <Card.Group className="ui stackable four column grid">
           {!isReady ? <Preloader /> : books.map(book => (
             <BookCard key={book.id} {...book} addBookToCart={addBookToCart} />
           ))}
@@ -47,6 +50,18 @@ class App extends React.Component {
     )
   }
 }
+
+const makeStickyHeader = () => {
+  let header = document.getElementById("header");
+  let sticky = header.offsetTop;
+  if (window.pageYOffset > sticky) {
+    header.classList.add('sticky');
+  } else {
+    header.classList.remove('sticky');
+  }
+}
+
+window.onscroll = makeStickyHeader;
 
 const sortBy = (books, filterBy) => {
   switch (filterBy) {

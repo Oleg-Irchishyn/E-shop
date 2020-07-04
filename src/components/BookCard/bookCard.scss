@@ -32,9 +32,18 @@
   }
   &__header.header {
     font-family: inherit !important;
+    word-break: break-all;
   }
   &__author {
     font-size: 16px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .ui.stackable.cards .card,
+  .ui.stackable.cards .card:first-child {
+    margin: 1em auto 1em auto !important;
+    max-width: 350px;
   }
 }
 

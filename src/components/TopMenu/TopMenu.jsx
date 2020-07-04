@@ -24,7 +24,7 @@ const TopMenu = ({ totalPrice, count, cartItems }) => {
         <Menu.Item name='total'> Total:&nbsp; <b>{totalPrice}</b> &nbsp;rub.</Menu.Item>
         <Popup
           trigger={<Menu.Item name='cart'>Cart:&nbsp;(<b>{count}</b>)</Menu.Item>}
-          content={cartItems.map(book => <Cart {...book} key={book.id} />)} on="click" hideOnScroll
+          content={cartItems.map(book => <Cart {...book} key={book.id} />)} on="click"
         />
       </Menu.Menu>
     </Menu>

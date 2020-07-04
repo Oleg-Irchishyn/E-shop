@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import './bookCard.scss';
 
 const BookCard = (book) => {
-  const { title, author, price, image, addBookToCart, addedCount, rating } = book
+  let { title, author, price, image, addBookToCart, addedCount, rating } = book
   let ratingCount = Math.ceil(rating);
   let ratingStars = [];
   for (let i = 1; i <= ratingCount; i++) {
@@ -36,7 +36,7 @@ const BookCard = (book) => {
         </div>
       </Card.Content>
       <Button className="book-card__button" onClick={addBookToCart.bind(this, book)}>
-        Add to Cart {addedCount > 0 && `(${addedCount})`}
+        Add to Cart {addedCount > 0 && `(${addedCount = 1})`}
       </Button>
     </Card>
   )
