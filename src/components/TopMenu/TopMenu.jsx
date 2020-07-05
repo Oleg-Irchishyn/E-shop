@@ -1,16 +1,19 @@
 import React from 'react';
 import { Menu, Popup, List, Button, Image } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
+import './topMenu.scss'
 
 const Cart = ({ title, id, image, removeBookFromCart }) => {
   return (
     <List selection divided verticalAlign='middle'>
       <List.Item>
-        <List.Content floated='right'>
+        <List.Content>
+          <Image avatar src={image} />
+          <span>{title}</span>
+        </List.Content>
+        <List.Content>
           <Button onClick={removeBookFromCart.bind(this, id)} color="red">Remove</Button>
         </List.Content>
-        <Image avatar src={image} />
-        <List.Content>{title}</List.Content>
       </List.Item>
     </List>
   )
@@ -19,12 +22,25 @@ const Cart = ({ title, id, image, removeBookFromCart }) => {
 const TopMenu = ({ totalPrice, count, cartItems }) => {
   return (
     <Menu>
-      <Menu.Item name='title'>Books Shop</Menu.Item>
+      <Menu.Item name='title'>
+        <span>Books Shop</span>
+      </Menu.Item>
       <Menu.Menu position='right'>
-        <Menu.Item name='total'> Total:&nbsp; <b>{totalPrice}</b> &nbsp;rub.</Menu.Item>
-        <Popup
-          trigger={<Menu.Item name='cart'>Cart:&nbsp;(<b>{count}</b>)</Menu.Item>}
+        <Menu.Item name='total'>
+          <span>Total:</span>
+          <b>{totalPrice}</b>
+          <span>rub.</span>
+        </Menu.Item>
+        <Popup id="cart-popup"
+          trigger={
+            <Menu.Item name='cart'>
+              <span>Cart:</span>
+              <b>({count})</b>
+            </Menu.Item>}
           content={cartItems.map(book => <Cart {...book} key={book.id} />)} on="click"
+          basic
+          position='top right'
+
         />
       </Menu.Menu>
     </Menu>

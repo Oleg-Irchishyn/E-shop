@@ -1,0 +1,42 @@
+.header .ui.menu:not(.vertical) .right.menu .item {
+  span + b {
+    margin: 0 0 0 2px;
+  }
+  b + span {
+    margin: 0 0 0 2px;
+  }
+}
+.ui.divided.selection.list > .item {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  max-width: 250px;
+  min-height: 170px;
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .ui.avatar.image {
+      width: 5em;
+      height: 5em;
+      margin-bottom: 10px;
+    }
+  }
+}
+@media only screen and (max-width: 575px) {
+  .header .ui.menu:not(.vertical) .right.menu {
+    margin-left: 0 !important;
+    flex: 1;
+    .item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      span + b,
+      b + span {
+        margin: 0;
+      }
+    }
+  }
+}

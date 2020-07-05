@@ -40,10 +40,12 @@
 }
 
 @media only screen and (max-width: 767px) {
-  .ui.stackable.cards .card,
-  .ui.stackable.cards .card:first-child {
-    margin: 1em auto 1em auto !important;
+  .ui.container .ui.stackable.cards > .card {
+    margin: 1em auto 1em auto;
     max-width: 350px;
+  }
+  .ui.container .ui.stackable.cards .card:first-child {
+    margin-top: 1em !important;
   }
 }
 
