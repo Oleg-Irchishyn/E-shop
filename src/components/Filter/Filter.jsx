@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Menu } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { createSecondaryMenuItem, createSecondaryMenuInput } from '../../redux/utils/oblectsHelpers';
@@ -7,6 +7,13 @@ const Filter = ({ setFilter, filterBy, searchQuery, setSearchQuery }) => {
   const setQuerySuccess = (e) => {
     setSearchQuery(e.target.value);
   }
+
+  useEffect(() => {
+    setTimeout(function () {
+      document.querySelector(".ui.secondary.menu a:nth-of-type(1").click();
+    }, 50);
+  }, []);
+
   return (
     <Menu secondary>
       {createSecondaryMenuItem('All', filterBy === 'All', setFilter.bind(this, 'All'))}
