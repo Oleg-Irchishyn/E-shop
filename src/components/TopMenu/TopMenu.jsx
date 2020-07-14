@@ -43,7 +43,6 @@ const TopMenu = ({ totalPrice, count, cartItems, removeBookFromCart }) => {
           content={cartItems.map(book => <Cart {...book} key={book.id} removeBookFromCart={removeBookFromCart.bind(this, book.id)} />)} on="click"
           basic
           position='top right'
-
         />
       </Menu.Menu>
     </Menu>
