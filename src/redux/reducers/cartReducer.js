@@ -3,7 +3,7 @@ const REMOVE_BOOK_FROM_CART = 'e-shop/app/REMOVE_BOOK_FROM_CART';
 const ADD_BOOK_TO_CART = 'e-shop/app/ADD_BOOK_TO_CART';
 
 let initialState = {
-  items: [],
+  items: JSON.parse(localStorage.getItem('cartItems')) || [],
   addedCount: 0
 }
 
