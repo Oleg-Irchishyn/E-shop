@@ -10,14 +10,14 @@ let initialState = {
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_BOOK_TO_CART: {
-      const newBook = [
+      const addedBooks = [
         ...state.items,
         action.payload
       ]
       
       return {
         ...state,
-        items: newBook
+        items: addedBooks
       }
     }
     case REMOVE_BOOK_FROM_CART:

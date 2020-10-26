@@ -19,7 +19,7 @@ const Cart = ({ title, id, image, removeBookFromCart}) => {
   )
 }
 
-const TopMenu = ({ totalPrice, count, cartItems, removeBookFromCart }) => {
+const TopMenu = ({ totalPrice, count, cartItems, removeBookFromCart}) => {
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
@@ -40,7 +40,7 @@ const TopMenu = ({ totalPrice, count, cartItems, removeBookFromCart }) => {
               <span>Cart:</span>
               <b>({count})</b>
             </Menu.Item>}
-          content={cartItems.map(book => <Cart {...book} key={book.id} removeBookFromCart={removeBookFromCart.bind(this, book.id)}/>)} on="click"
+          content={cartItems.map(book => <Cart {...book} key={book.id} removeBookFromCart={removeBookFromCart.bind(this, book.id)} />)} on="click"
           basic
           position='top right'
         />
