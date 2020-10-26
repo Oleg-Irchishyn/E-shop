@@ -9,14 +9,17 @@ let initialState = {
 
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_BOOK_TO_CART:
+    case ADD_BOOK_TO_CART: {
+      const newBook = [
+        ...state.items,
+        action.payload
+      ]
+      
       return {
         ...state,
-        items: [
-          ...state.items,
-          action.payload
-        ]
+        items: newBook
       }
+    }
     case REMOVE_BOOK_FROM_CART:
       return {
         ...state,

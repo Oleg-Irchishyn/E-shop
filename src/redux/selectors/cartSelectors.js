@@ -9,9 +9,12 @@ export const cartItemsLength = (state) => {
   return parseInt(cartItems(state).length);
 }
 
+export const totalPriceLength = (state) => {
+ return state.cart.items;
+}
+
 export const totalItemsPrice = createSelector(
-  cartItems, (items) => {
+  totalPriceLength, (items) => {
     return items.reduce((total, book) => total + book.price, 0);
   }
 )
-

@@ -30,7 +30,7 @@ class App extends React.Component {
     const { books, isReady, setFilter,
       filterBy, searchQuery, setSearchQuery,
       totalPrice, count, addBookToCart, removeBookFromCart,
-      cartItems, initialized } = this.props;
+      cartItems, initialized} = this.props;
 
     if (!initialized) {
       return <Preloader />
@@ -92,6 +92,11 @@ App.propTypes = {
   setBooksSuccess: PropTypes.func.isRequired,
   initializeApp: PropTypes.func.isRequired
 }
+
+App.defaultProps = {
+  cartItems: []
+}
+
 
 const mapStateToProps = (state) => ({
   initialized: initializeAppSucess(state),

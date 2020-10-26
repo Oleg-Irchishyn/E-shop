@@ -36,7 +36,7 @@ const BookCard = (book) => {
         </div>
       </Card.Content>
       <Button className="book-card__button" onClick={addBookToCart.bind(this, book)}>
-        Add to Cart {addedCount > 0 && `(${addedCount = 1})`}
+        Add to Cart {addedCount > 0 && `(${addedCount})`}
       </Button>
     </Card>
   )

@@ -3,7 +3,7 @@ import { Menu, Popup, List, Button, Image } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import './topMenu.scss'
 
-const Cart = ({ title, id, image, removeBookFromCart }) => {
+const Cart = ({ title, id, image, removeBookFromCart}) => {
   return (
     <List selection divided verticalAlign='middle'>
       <List.Item>
@@ -40,7 +40,7 @@ const TopMenu = ({ totalPrice, count, cartItems, removeBookFromCart }) => {
               <span>Cart:</span>
               <b>({count})</b>
             </Menu.Item>}
-          content={cartItems.map(book => <Cart {...book} key={book.id} removeBookFromCart={removeBookFromCart.bind(this, book.id)} />)} on="click"
+          content={cartItems.map(book => <Cart {...book} key={book.id} removeBookFromCart={removeBookFromCart.bind(this, book.id)}/>)} on="click"
           basic
           position='top right'
         />
@@ -61,6 +61,5 @@ TopMenu.propTypes = {
   count: PropTypes.number.isRequired,
   cartItems: PropTypes.array.isRequired
 }
-
 
 export default TopMenu;
